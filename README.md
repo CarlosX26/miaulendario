@@ -1,38 +1,38 @@
 <p align="center">
-  <img src="./favicon.svg" width="88" height="88" alt="Ícone do Miaulendário" />
+  <img src="./favicon.svg" width="88" height="88" alt="Miaulendário icon" />
 </p>
 
 <h1 align="center">Miaulendário</h1>
 
 <p align="center">
-  Um calendário visual e divertido para descobrir a semana atual, acompanhar o progresso do ano e saber quanto tempo ainda falta.
+  A playful visual calendar for checking the current week, tracking yearly progress, and seeing how much time is left in the year.
 </p>
 
 <p align="center">
-  <a href="https://miaulendario.vercel.app/">Ver demonstração</a>
+  <a href="https://miaulendario.vercel.app/">Live demo</a>
   ·
   <a href="https://www.buymeacoffee.com/sr.cj">Buy me a coffee</a>
 </p>
 
-![Prévia do Miaulendário](./og-image.png)
+![Miaulendário preview](./og-image.png)
 
-## Sobre
+## About
 
-O Miaulendário apresenta a semana ISO atual em um calendário anual inspirado em papel quadriculado, anotações à mão e carimbos. Tudo funciona diretamente no navegador, sem cadastro, cookies, rastreamento ou chamadas para APIs.
+Miaulendário displays the current ISO week in a yearly calendar inspired by graph paper, handwritten notes, and ink stamps. Everything runs directly in the browser, with no accounts, cookies, tracking, or API requests.
 
-## Recursos
+## Features
 
-- Semana e ano ISO atuais.
-- Progresso percentual do ano.
-- Dia atual dentro do ano.
-- Dias e semanas restantes.
-- Grade visual com semanas passadas, atual e futuras.
-- Layout responsivo e suporte a movimento reduzido.
-- Gatinho flutuante interativo com som gerado pelo navegador.
-- Metadados para SEO, Open Graph e Twitter Cards.
-- Content Security Policy e cabeçalhos de segurança para a Vercel.
+- Current ISO week and ISO week-numbering year.
+- Yearly progress percentage.
+- Current day of the year.
+- Remaining days and weeks.
+- Visual grid for past, current, and upcoming weeks.
+- Responsive layout with reduced-motion support.
+- Interactive floating cat with browser-generated audio.
+- SEO, Open Graph, and Twitter Card metadata.
+- Content Security Policy and security headers for Vercel.
 
-## Tecnologias
+## Technologies
 
 - HTML5
 - CSS3
@@ -40,38 +40,38 @@ O Miaulendário apresenta a semana ISO atual em um calendário anual inspirado e
 - Web Audio API
 - Vercel
 
-Não há dependências, framework, bundler ou etapa de build.
+There are no dependencies, frameworks, bundlers, or build steps.
 
-## Executando localmente
+## Running locally
 
-Clone o repositório:
+Clone the repository:
 
 ```bash
 git clone git@github.com:CarlosX26/miaulendario.git
 cd miaulendario
 ```
 
-Inicie qualquer servidor HTTP estático. Com Python:
+Start any static HTTP server. With Python:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Depois, acesse [http://localhost:8000](http://localhost:8000).
+Then open [http://localhost:8000](http://localhost:8000).
 
-## Deploy na Vercel
+## Deploying to Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCarlosX26%2Fmiaulendario)
 
-Ao importar o repositório na Vercel, use:
+When importing the repository into Vercel, use:
 
 - **Framework Preset:** Other
-- **Build Command:** vazio
+- **Build Command:** leave empty
 - **Output Directory:** `.`
 
-O arquivo [`vercel.json`](./vercel.json) configura URLs limpas e os cabeçalhos de segurança.
+The [`vercel.json`](./vercel.json) file configures clean URLs and security headers.
 
-## Estrutura
+## Project structure
 
 ```text
 .
@@ -86,14 +86,14 @@ O arquivo [`vercel.json`](./vercel.json) configura URLs limpas e os cabeçalhos 
 └── vercel.json       # Vercel deployment configuration
 ```
 
-## Privacidade e segurança
+## Privacy and security
 
-Todos os cálculos são executados localmente no navegador. O site não coleta nem envia dados pessoais.
+All calculations run locally in the browser. The website does not collect or transmit personal data.
 
-O arquivo `.env` versionado neste projeto não contém credenciais ou configurações sensíveis — é apenas um easter egg culinário. Nunca coloque segredos reais em código JavaScript público.
+The versioned `.env` file does not contain credentials or sensitive configuration — it is only a cooking-themed easter egg. Never place real secrets in public client-side JavaScript.
 
-## Autor
+## Author
 
-Criado por [CarlosX26](https://github.com/CarlosX26).
+Created by [CarlosX26](https://github.com/CarlosX26).
 
-Se o Miaulendário deixou sua semana um pouco mais divertida, você pode [pagar um café](https://www.buymeacoffee.com/sr.cj).
+If Miaulendário made your week a little more fun, you can [buy me a coffee](https://www.buymeacoffee.com/sr.cj).
