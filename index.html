@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'sha256-JYe0Xw0BiqX9fu7K3+wmcIXQRNgmnEUQtAQTokHKvVE='; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
+    />
+    <meta
+      name="description"
+      content="Descubra qual é a semana atual do ano, quantos dias e semanas ainda faltam e acompanhe o progresso anual no Miaulendário."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://miaulendario.vercel.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Miaulendário" />
+    <meta
+      property="og:title"
+      content="Miaulendário — Qual é a semana atual do ano?"
+    />
+    <meta
+      property="og:description"
+      content="Veja a semana atual, o progresso do ano e quanto tempo ainda falta para o próximo calendário."
+    />
+    <meta property="og:url" content="https://miaulendario.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://miaulendario.vercel.app/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Miaulendário em papel quadriculado, com um carimbo de calendário e um gatinho segurando um balão vermelho."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Miaulendário — Qual é a semana atual do ano?"
+    />
+    <meta
+      name="twitter:description"
+      content="Veja a semana atual, o progresso do ano e quantas semanas ainda faltam."
+    />
+    <meta
+      name="twitter:image"
+      content="https://miaulendario.vercel.app/og-image.png"
+    />
+
+    <title>Miaulendário — Semana Atual do Ano</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;family=Caveat:wght@500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Miaulendário",
+        "alternateName": "Calendário de semanas",
+        "url": "https://miaulendario.vercel.app/",
+        "description": "Calendário visual para consultar a semana atual, o progresso do ano e quantas semanas ainda faltam.",
+        "inLanguage": "pt-BR"
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="eyebrow">
+        Miaulendário <span>·</span> <span id="currentYear"></span>
+      </h1>
+      <p class="intro">
+        Descubra a semana atual, acompanhe o progresso do ano e veja quantas
+        semanas ainda faltam.
+      </p>
+
+      <div class="hero">
+        <div class="stamp" id="stamp">
+          <div class="stamp-ring"></div>
+          <div class="stamp-ring-2"></div>
+          <div class="stamp-text">
+            <span class="label">Semana</span>
+            <span class="num" id="currentWeek">--</span>
+            <span class="year" id="stampYear"></span>
+          </div>
+        </div>
+        <div class="stamp-of">
+          de <span id="totalWeeks">--</span> semanas no ano
+        </div>
+      </div>
+
+      <div class="date-wrap">
+        <div class="note">
+          faltam <b id="remainingDays">--</b> dias para acabar o ano
+        </div>
+        <div class="date-note">
+          hoje é <span id="todayDateValue"></span>
+        </div>
+      </div>
+
+      <div class="perforation">
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="weeks-grid" id="weeksGrid"></div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="swatch past"></span> semana que passou
+        </div>
+        <div class="legend-item">
+          <span class="swatch current"></span> semana atual
+        </div>
+        <div class="legend-item">
+          <span class="swatch future"></span> semana que vem
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat accent">
+          <span class="n" id="yearPercentage">--%</span
+          ><span class="l">do ano concluído</span>
+        </div>
+        <div class="stat">
+          <span class="n" id="dayOfYearValue">--</span
+          ><span class="l">dia do ano</span>
+        </div>
+        <div class="stat">
+          <span class="n" id="remainingWeeks">--</span
+          ><span class="l">semanas que faltam</span>
+        </div>
+      </div>
+    </div>
+
+    <a
+      class="bmc-btn"
+      href="https://www.buymeacoffee.com/sr.cj"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Apoie o sr.cj no Buy Me a Coffee"
+    >
+      <span class="cup" aria-hidden="true">☕</span>
+      Buy me a coffee
+    </a>
+
+    <div
+      class="cat-wrapper"
+      id="catWrapper"
+      role="button"
+      aria-label="Gatinho flutuando com balão, clique para ouvir um miau"
+      tabindex="0"
+    >
+      <div class="cat-flip" id="catFlip">
+        <div class="cat-body-wrap" id="catBody">
+          <div class="cat-bubble" id="catBubble">Miau!</div>
+          <img
+            class="cat-img"
+            src="cat.gif"
+            alt="Gatinho pixelado flutuando com um balão vermelho"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
