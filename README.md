@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://miaulendario.vercel.app/">Live demo</a>
+  <a href="https://www.miaulendario.online/">Live demo</a>
   ·
   <a href="https://www.buymeacoffee.com/sr.cj">Buy me a coffee</a>
 </p>
@@ -78,6 +78,7 @@ The [`vercel.json`](./vercel.json) file configures clean URLs and security heade
 ├── index.html        # Page structure and metadata
 ├── index.css         # Visual design and responsive layout
 ├── index.js          # Calendar calculations and interactions
+├── api/env.js        # Serves the public .env easter egg
 ├── cat.gif           # Floating cat animation
 ├── favicon.svg       # Browser and search favicon
 ├── og-image.png      # Social sharing preview
@@ -90,7 +91,7 @@ The [`vercel.json`](./vercel.json) file configures clean URLs and security heade
 
 All calculations run locally in the browser. The website does not collect or transmit personal data.
 
-The versioned `.env` file does not contain credentials or sensitive configuration — it is only a cooking-themed easter egg. Never place real secrets in public client-side JavaScript.
+The versioned `.env` file does not contain credentials or sensitive configuration — it is only a cooking-themed easter egg, available at [miaulendario.online/.env](https://www.miaulendario.online/.env) and [miaulendario.online/env](https://www.miaulendario.online/env). Never place real secrets in this file or in public client-side JavaScript.
 
 ## Author
 

@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'sha256-JYe0Xw0BiqX9fu7K3+wmcIXQRNgmnEUQtAQTokHKvVE='; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
+      content="default-src 'self'; script-src 'self' 'sha256-Sn9UnbLiJJz/11KoAKke3iOXCr84DKqg8s46rViHP+Y='; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
     />
     <meta
       name="description"
       content="Descubra qual é a semana atual do ano, quantos dias e semanas ainda faltam e acompanhe o progresso anual no Miaulendário."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://miaulendario.vercel.app/" />
+    <meta name="theme-color" content="#f7f6f1" />
+    <meta name="application-name" content="Miaulendário" />
+    <link rel="canonical" href="https://www.miaulendario.online/" />
+    <link
+      rel="alternate"
+      hreflang="pt-BR"
+      href="https://www.miaulendario.online/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://www.miaulendario.online/"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
@@ -25,11 +37,16 @@
       property="og:description"
       content="Veja a semana atual, o progresso do ano e quanto tempo ainda falta para o próximo calendário."
     />
-    <meta property="og:url" content="https://miaulendario.vercel.app/" />
+    <meta property="og:url" content="https://www.miaulendario.online/" />
     <meta
       property="og:image"
-      content="https://miaulendario.vercel.app/og-image.png"
+      content="https://www.miaulendario.online/og-image.png"
     />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.miaulendario.online/og-image.png"
+    />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -48,7 +65,11 @@
     />
     <meta
       name="twitter:image"
-      content="https://miaulendario.vercel.app/og-image.png"
+      content="https://www.miaulendario.online/og-image.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Miaulendário em papel quadriculado, com um carimbo de calendário e um gatinho segurando um balão vermelho."
     />
 
     <title>Miaulendário — Semana Atual do Ano</title>
@@ -65,7 +86,8 @@
         "@type": "WebSite",
         "name": "Miaulendário",
         "alternateName": "Calendário de semanas",
-        "url": "https://miaulendario.vercel.app/",
+        "url": "https://www.miaulendario.online/",
+        "image": "https://www.miaulendario.online/og-image.png",
         "description": "Calendário visual para consultar a semana atual, o progresso do ano e quantas semanas ainda faltam.",
         "inLanguage": "pt-BR"
       }

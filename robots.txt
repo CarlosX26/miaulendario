@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://miaulendario.vercel.app/sitemap.xml
+Sitemap: https://www.miaulendario.online/sitemap.xml

@@ -13,9 +13,8 @@
   margin: 0;
   padding: 0;
 }
-html,
-body {
-  height: 100%;
+html {
+  min-height: 100%;
 }
 
 body {
@@ -40,7 +39,8 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: clamp(24px, 6vw, 64px) 16px clamp(220px, 24vw, 320px);
+  padding: clamp(24px, 6vw, 64px) 16px
+    calc(clamp(64px, 12vw, 136px) + env(safe-area-inset-bottom));
   position: relative;
 }
 
