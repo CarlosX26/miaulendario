@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'sha256-Sn9UnbLiJJz/11KoAKke3iOXCr84DKqg8s46rViHP+Y='; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
+      content="default-src 'self'; script-src 'self' 'sha256-Sn9UnbLiJJz/11KoAKke3iOXCr84DKqg8s46rViHP+Y=' https://cdn.vercel-insights.com; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://vitals.vercel-insights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
     />
     <meta
       name="description"
@@ -80,6 +80,7 @@
     />
     <link rel="stylesheet" href="index.css" />
     <script src="index.js" defer></script>
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
