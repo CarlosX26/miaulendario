@@ -1,7 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/en",
+      "destination": "/en/",
+      "permanent": true
+    }
+  ],
   "functions": {
     "api/env.js": {
       "includeFiles": ".env"
@@ -23,7 +29,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'sha256-Sn9UnbLiJJz/11KoAKke3iOXCr84DKqg8s46rViHP+Y=' https://cdn.vercel-insights.com; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://vitals.vercel-insights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; worker-src 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self' 'sha256-h/vIrFzQpgIfjor0bEyxILx2LqIwjBjWkYrJH7oed5Q=' https://cdn.vercel-insights.com; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; worker-src 'none'; upgrade-insecure-requests"
         },
         {
           "key": "Referrer-Policy",

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,12 +7,12 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'sha256-h/vIrFzQpgIfjor0bEyxILx2LqIwjBjWkYrJH7oed5Q=' https://cdn.vercel-insights.com; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
     />
-    <meta name="description" content="Veja a semana e o dia atuais, o dia do ano, quantos dias e semanas faltam para acabar o ano e acompanhe o progresso anual." />
+    <meta name="description" content="See the current week and weekday, today&#39;s day of the year, how many days and weeks are left, and the year&#39;s progress." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#f7f6f1" />
     <meta name="application-name" content="Miaulendário" />
 
-    <link rel="canonical" href="https://www.miaulendario.online/" />
+    <link rel="canonical" href="https://www.miaulendario.online/en/" />
     <link
       rel="alternate"
       hreflang="pt-BR"
@@ -30,12 +30,12 @@
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="pt_BR" />
     <meta property="og:site_name" content="Miaulendário" />
-    <meta property="og:title" content="Semana atual e dias restantes do ano | Miaulendário" />
-    <meta property="og:description" content="Descubra a semana atual, o dia do ano e quantos dias e semanas ainda faltam para o fim do ano." />
-    <meta property="og:url" content="https://www.miaulendario.online/" />
+    <meta property="og:title" content="Current week number and days left | Miaulendário" />
+    <meta property="og:description" content="Find the current ISO week, today&#39;s day number, and how many days and weeks are left in the year." />
+    <meta property="og:url" content="https://www.miaulendario.online/en/" />
     <meta
       property="og:image"
       content="https://www.miaulendario.online/og-image.png"
@@ -47,18 +47,18 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Miaulendário em papel quadriculado, com um carimbo de calendário e um gatinho segurando um balão vermelho." />
+    <meta property="og:image:alt" content="Miaulendário on graph paper, with a calendar stamp and a cat holding a red balloon." />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Semana atual e dias restantes do ano | Miaulendário" />
-    <meta name="twitter:description" content="Descubra a semana atual, o dia do ano e quantos dias e semanas ainda faltam para o fim do ano." />
+    <meta name="twitter:title" content="Current week number and days left | Miaulendário" />
+    <meta name="twitter:description" content="Find the current ISO week, today&#39;s day number, and how many days and weeks are left in the year." />
     <meta
       name="twitter:image"
       content="https://www.miaulendario.online/og-image.png"
     />
-    <meta name="twitter:image:alt" content="Miaulendário em papel quadriculado, com um carimbo de calendário e um gatinho segurando um balão vermelho." />
+    <meta name="twitter:image:alt" content="Miaulendário on graph paper, with a calendar stamp and a cat holding a red balloon." />
 
-    <title>Semana Atual e Quantos Dias Faltam no Ano | Miaulendário</title>
+    <title>Current Week Number &amp; Days Left in the Year | Miaulendário</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,19 +85,19 @@
     </script>
   </head>
   <body
-    data-week-label="Semana"
-    data-state-past="semana que passou"
-    data-state-current="semana atual"
-    data-state-future="semana que vem"
-    data-remaining-days-prefix-one="Falta"
-    data-remaining-days-prefix-other="Faltam"
-    data-remaining-days-unit-one="dia"
-    data-remaining-days-unit-other="dias"
-    data-remaining-weeks-one="semana que falta"
-    data-remaining-weeks-other="semanas que faltam"
+    data-week-label="Week"
+    data-state-past="past week"
+    data-state-current="current week"
+    data-state-future="upcoming week"
+    data-remaining-days-prefix-one="There is"
+    data-remaining-days-prefix-other="There are"
+    data-remaining-days-unit-one="day"
+    data-remaining-days-unit-other="days"
+    data-remaining-weeks-one="week remaining"
+    data-remaining-weeks-other="weeks remaining"
   >
     <main class="page">
-      <nav class="language-switcher" aria-label="Selecionar idioma">
+      <nav class="language-switcher" aria-label="Select language">
         <a href="/" hreflang="pt-BR" lang="pt-BR">PT</a>
         <span aria-hidden="true">/</span>
         <a href="/en/" hreflang="en" lang="en">EN</a>
@@ -106,22 +106,22 @@
       <p class="eyebrow">
         Miaulendário <span>·</span> <span id="currentYear"></span>
       </p>
-      <h1 class="page-title">Qual é a semana atual e quantos dias faltam para acabar o ano?</h1>
-      <p class="intro">Veja em qual semana do ano estamos, a data de hoje, o progresso anual e quanto tempo ainda falta para o próximo ano.</p>
+      <h1 class="page-title">What is the current week number and how many days are left this year?</h1>
+      <p class="intro">See the current week of the year, today&#39;s date, annual progress, and how much time remains until next year.</p>
 
       <div class="hero" aria-live="polite">
         <div class="stamp" id="stamp">
           <div class="stamp-ring"></div>
           <div class="stamp-ring-2"></div>
           <div class="stamp-text">
-            <span class="label">Semana</span>
+            <span class="label">Week</span>
             <span class="num" id="currentWeek">--</span>
             <span class="year" id="stampYear"></span>
           </div>
         </div>
         <div class="stamp-of">
-          de <span id="totalWeeks">--</span>
-          semanas no ano ISO
+          of <span id="totalWeeks">--</span>
+          weeks in the ISO year
         </div>
         <p class="week-range" id="currentWeekRange"></p>
       </div>
@@ -131,10 +131,10 @@
           <span id="remainingDaysPrefix">--</span>
           <b id="remainingDays">--</b>
           <span id="remainingDaysUnit">--</span>
-          para acabar o ano
+          left in the year
         </div>
         <div class="date-note">
-          hoje é <span id="todayDateValue"></span>
+          today is <span id="todayDateValue"></span>
         </div>
       </div>
 
@@ -154,33 +154,33 @@
           class="weeks-grid"
           id="weeksGrid"
           role="list"
-          aria-label="Calendário das semanas do ano com datas de início e fim"
+          aria-label="Calendar of the year&#39;s weeks with start and end dates"
         ></div>
       </div>
 
-      <div class="legend" aria-label="Calendário das semanas do ano com datas de início e fim">
+      <div class="legend" aria-label="Calendar of the year&#39;s weeks with start and end dates">
         <div class="legend-item">
           <span class="swatch past" aria-hidden="true"></span>
-          semana que passou
+          past week
         </div>
         <div class="legend-item">
           <span class="swatch current" aria-hidden="true"></span>
-          semana atual
+          current week
         </div>
         <div class="legend-item">
           <span class="swatch future" aria-hidden="true"></span>
-          semana que vem
+          upcoming week
         </div>
       </div>
 
       <div class="stats-row" aria-live="polite">
         <div class="stat accent">
           <span class="n" id="yearPercentage">--%</span>
-          <span class="l">do ano concluído</span>
+          <span class="l">of the year completed</span>
         </div>
         <div class="stat">
           <span class="n" id="dayOfYearValue">--</span>
-          <span class="l">dia do ano</span>
+          <span class="l">day of the year</span>
         </div>
         <div class="stat">
           <span class="n" id="remainingWeeks">--</span>
@@ -189,37 +189,37 @@
       </div>
 
       <section class="calendar-details" aria-labelledby="detailsTitle">
-        <h2 id="detailsTitle">Semana atual, dia do ano e contagem regressiva</h2>
+        <h2 id="detailsTitle">Current week, day of the year, and countdown</h2>
         <div class="details-grid">
           <article>
-            <h3>Em qual semana do ano estamos?</h3>
+            <h3>What week of the year is it?</h3>
             <p>
-              De acordo com o padrão ISO 8601, estamos na semana
+              According to the ISO 8601 standard, the current week is week
               <strong id="summaryCurrentWeek">--</strong>
-              do ano ISO
+              of ISO week-numbering year
               <strong id="summaryWeekYear">--</strong>.
-              As semanas ISO começam na segunda-feira e terminam no domingo.
+              ISO weeks begin on Monday and end on Sunday.
             </p>
           </article>
           <article>
-            <h3>Quantos dias faltam para acabar o ano?</h3>
+            <h3>How many days are left in the year?</h3>
             <p>
               <span id="summaryRemainingDaysPrefix">--</span>
               <strong id="summaryRemainingDays">--</strong>
               <span id="summaryRemainingDaysUnit">--</span>
-              para terminar o ano civil. A contagem considera os dias completos depois de hoje até 31 de dezembro.
+              left until the end of the calendar year. The countdown includes the full days after today through December 31.
             </p>
           </article>
           <article>
-            <h3>Que dia da semana é hoje?</h3>
+            <h3>What day of the week is it today?</h3>
             <p>
-              Hoje é
-              <strong id="summaryTodayDate">--</strong>. A data é apresentada no seu idioma, usando o horário local do dispositivo.
+              Today is
+              <strong id="summaryTodayDate">--</strong>. The date is localized using your device&#39;s current time zone.
             </p>
           </article>
           <article>
-            <h3>Como funciona o calendário de semanas?</h3>
-            <p>O calendário organiza o ano ISO em 52 ou 53 semanas. Como o ano ISO pode começar em dezembro ou terminar em janeiro, ele nem sempre coincide com o ano civil. Passe o cursor sobre uma semana para ver as datas; a semana atual aparece circulada em vermelho.</p>
+            <h3>How does the week calendar work?</h3>
+            <p>The calendar divides the ISO week-numbering year into 52 or 53 weeks. Because an ISO year can begin in December or end in January, it does not always match the calendar year. Hover over a week to see its dates; the current week is circled in red.</p>
           </article>
         </div>
       </section>
@@ -230,7 +230,7 @@
       href="https://www.buymeacoffee.com/sr.cj"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Apoie o sr.cj no Buy Me a Coffee"
+      aria-label="Support sr.cj on Buy Me a Coffee"
     >
       <span class="cup" aria-hidden="true">☕</span>
       Buy me a coffee
@@ -240,13 +240,13 @@
       class="cat-wrapper"
       id="catWrapper"
       role="button"
-      aria-label="Gatinho flutuando com balão, clique para ouvir um miau"
+      aria-label="Floating cat with a balloon; activate it to hear a meow"
       tabindex="0"
     >
       <div class="cat-flip" id="catFlip">
         <div class="cat-body-wrap" id="catBody">
-          <div class="cat-bubble" id="catBubble">Miau!</div>
-          <img class="cat-img" src="/cat.gif" alt="Gatinho pixelado flutuando com um balão vermelho" />
+          <div class="cat-bubble" id="catBubble">Meow!</div>
+          <img class="cat-img" src="/cat.gif" alt="Pixel art cat floating with a red balloon" />
         </div>
       </div>
     </div>

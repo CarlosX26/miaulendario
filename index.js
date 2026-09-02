@@ -133,57 +133,32 @@
   })
 })()
 
-const msPerDay = 86400000
-
-function utcDate(year, month, day) {
-  return Date.UTC(year, month, day)
-}
-
-// Return the ISO week and year without relying on daylight saving time.
-function getISOWeekInfo(date) {
-  const thursday = new Date(
-    utcDate(date.getFullYear(), date.getMonth(), date.getDate()),
-  )
-  const weekday = thursday.getUTCDay() || 7
-  thursday.setUTCDate(thursday.getUTCDate() + 4 - weekday)
-
-  const isoYear = thursday.getUTCFullYear()
-  const isoYearFirstDay = utcDate(isoYear, 0, 1)
-  const week = Math.ceil(
-    ((thursday.getTime() - isoYearFirstDay) / msPerDay + 1) / 7,
-  )
-
-  return { year: isoYear, week }
-}
-
-// Monday of ISO week 1, the week containing January 4.
-function getISOYearStart(year) {
-  const januaryFourth = new Date(utcDate(year, 0, 4))
-  const weekday = (januaryFourth.getUTCDay() + 6) % 7
-  januaryFourth.setUTCDate(januaryFourth.getUTCDate() - weekday)
-  return januaryFourth.getTime()
-}
+const locale = document.documentElement.lang || "pt-BR"
+const pageData = document.body.dataset
+const {
+  getCalendarMetrics,
+  getDatePartsInTimeZone,
+  getISOWeekRange,
+  getISOYearStart,
+  msPerDay,
+  selectPluralForm,
+  utcDate,
+} = globalThis.MiaulendarioCalendar
 
 const today = new Date()
-const year = today.getFullYear()
-const todayUTC = utcDate(year, today.getMonth(), today.getDate())
-
-const yearStart = utcDate(year, 0, 1)
-const nextYearStart = utcDate(year + 1, 0, 1)
-const dayOfYear = Math.floor((todayUTC - yearStart) / msPerDay) + 1
-const totalDays = Math.round((nextYearStart - yearStart) / msPerDay)
-const remainingDays = totalDays - dayOfYear
-const remainingWeeks = Math.ceil(remainingDays / 7)
-const yearPercentage = Math.round((dayOfYear / totalDays) * 100)
-
-const isoWeekInfo = getISOWeekInfo(today)
-const weekYear = isoWeekInfo.year
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+const dateParts = getDatePartsInTimeZone(today, timeZone)
+const { civil, iso } = getCalendarMetrics(dateParts)
+const {
+  year,
+  dayOfYear,
+  totalDays,
+  remainingDays,
+  remainingWeeks,
+  yearPercentage,
+} = civil
+const { year: weekYear, week: currentWeek, totalWeeks } = iso
 const firstWeekStart = getISOYearStart(weekYear)
-const nextFirstWeekStart = getISOYearStart(weekYear + 1)
-const totalWeeks = Math.round(
-  (nextFirstWeekStart - firstWeekStart) / (7 * msPerDay),
-)
-const currentWeek = isoWeekInfo.week
 
 document.getElementById("currentYear").textContent = year
 document.getElementById("stampYear").textContent = weekYear
@@ -194,16 +169,52 @@ document.getElementById("remainingWeeks").textContent = remainingWeeks
 document.getElementById("yearPercentage").textContent = yearPercentage + "%"
 document.getElementById("dayOfYearValue").textContent =
   dayOfYear + "/" + totalDays
-document.getElementById("todayDateValue").textContent =
-  today.toLocaleDateString("pt-BR", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  })
+document.getElementById("summaryCurrentWeek").textContent = currentWeek
+document.getElementById("summaryWeekYear").textContent = weekYear
+document.getElementById("summaryRemainingDays").textContent = remainingDays
+
+const pluralForm = (value, one, other) =>
+  selectPluralForm(value, locale, { one, other })
+const remainingDaysPrefix = pluralForm(
+  remainingDays,
+  pageData.remainingDaysPrefixOne,
+  pageData.remainingDaysPrefixOther,
+)
+const remainingDaysUnit = pluralForm(
+  remainingDays,
+  pageData.remainingDaysUnitOne,
+  pageData.remainingDaysUnitOther,
+)
+
+document.getElementById("remainingDaysPrefix").textContent = remainingDaysPrefix
+document.getElementById("remainingDaysUnit").textContent = remainingDaysUnit
+document.getElementById("summaryRemainingDaysPrefix").textContent =
+  remainingDaysPrefix
+document.getElementById("summaryRemainingDaysUnit").textContent =
+  remainingDaysUnit
+document.getElementById("remainingWeeksLabel").textContent = pluralForm(
+  remainingWeeks,
+  pageData.remainingWeeksOne,
+  pageData.remainingWeeksOther,
+)
+
+const localizedToday = today.toLocaleDateString(locale, {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone,
+})
+document.getElementById("todayDateValue").textContent = localizedToday
+document.getElementById("summaryTodayDate").textContent = localizedToday
+
+const currentLanguageLink = document.querySelector(
+  `.language-switcher a[hreflang="${locale}"]`,
+)
+if (currentLanguageLink) currentLanguageLink.setAttribute("aria-current", "page")
 
 // Mark the week in which each month starts for the grid labels.
-const monthFormatter = new Intl.DateTimeFormat("pt-BR", {
+const monthFormatter = new Intl.DateTimeFormat(locale, {
   month: "short",
   timeZone: "UTC",
 })
@@ -227,19 +238,72 @@ const circleSVG = `
       <path d="M 14 52 C 10 24, 40 6, 68 10 C 94 14, 96 46, 78 66 C 60 88, 22 86, 12 62 C 9 56, 12 54, 14 52 Z" />
     </svg>`
 
+const weekRangeFormatter = new Intl.DateTimeFormat(locale, {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+})
+
+function getWeekRange(week) {
+  return getISOWeekRange(weekYear, week)
+}
+
+function formatWeekRange(week) {
+  const [start, end] = getWeekRange(week)
+  if (typeof weekRangeFormatter.formatRange === "function") {
+    return weekRangeFormatter.formatRange(start, end)
+  }
+  return `${weekRangeFormatter.format(start)} – ${weekRangeFormatter.format(end)}`
+}
+
+document.getElementById("currentWeekRange").textContent =
+  formatWeekRange(currentWeek)
+
 const grid = document.getElementById("weeksGrid")
-let gridMarkup = ""
+const gridFragment = document.createDocumentFragment()
 for (let i = 1; i <= totalWeeks; i++) {
   let stateClass = "future"
   if (i < currentWeek) stateClass = "past"
   if (i === currentWeek) stateClass = "current"
+
   const isMonthStart = !!monthStartByWeek[i]
-  gridMarkup += `<div class="week ${stateClass}${isMonthStart ? " month-start" : ""}">`
-  if (isMonthStart)
-    gridMarkup += `<span class="month-tag">${monthStartByWeek[i]}</span>`
-  gridMarkup += `${i}${stateClass === "current" ? circleSVG : ""}</div>`
+  const dateRange = formatWeekRange(i)
+  const stateLabel = pageData[`state${stateClass[0].toUpperCase()}${stateClass.slice(1)}`]
+  const accessibleLabel = `${pageData.weekLabel} ${i}: ${dateRange}, ${stateLabel}`
+
+  const weekElement = document.createElement("div")
+  weekElement.className = `week ${stateClass}${isMonthStart ? " month-start" : ""}`
+  weekElement.setAttribute("role", "listitem")
+  weekElement.setAttribute("aria-label", accessibleLabel)
+  weekElement.title = accessibleLabel
+
+  if (isMonthStart) {
+    const monthTag = document.createElement("span")
+    monthTag.className = "month-tag"
+    monthTag.setAttribute("aria-hidden", "true")
+    monthTag.textContent = monthStartByWeek[i]
+    weekElement.append(monthTag)
+  }
+
+  const weekNumber = document.createElement("span")
+  weekNumber.className = "week-number"
+  weekNumber.setAttribute("aria-hidden", "true")
+  weekNumber.textContent = i
+  weekElement.append(weekNumber)
+
+  const weekDates = document.createElement("span")
+  weekDates.className = "visually-hidden week-dates"
+  weekDates.textContent = dateRange
+  weekElement.append(weekDates)
+
+  if (stateClass === "current") {
+    weekElement.insertAdjacentHTML("beforeend", circleSVG)
+  }
+
+  gridFragment.append(weekElement)
 }
-grid.innerHTML = gridMarkup
+grid.replaceChildren(gridFragment)
 
 // Start the stamp animation after the page is ready.
 requestAnimationFrame(() =>

@@ -18,18 +18,22 @@
 
 ## About
 
-Miaulendário displays the current ISO week in a yearly calendar inspired by graph paper, handwritten notes, and ink stamps. Everything runs directly in the browser, with no accounts, cookies, tracking, or API requests.
+Miaulendário displays the current ISO week in a yearly calendar inspired by graph paper, handwritten notes, and ink stamps. The interface is available in Brazilian Portuguese and English, with no accounts or cookies.
 
 ## Features
 
 - Current ISO week and ISO week-numbering year.
+- Explicit separation between the local calendar year and ISO week-numbering year.
 - Yearly progress percentage.
 - Current day of the year.
 - Remaining days and weeks.
-- Visual grid for past, current, and upcoming weeks.
+- Localized singular and plural labels.
+- Visual grid for past, current, and upcoming weeks, including date ranges.
+- Pre-rendered Brazilian Portuguese and English pages.
 - Responsive layout with reduced-motion support.
 - Interactive floating cat with browser-generated audio.
 - SEO, Open Graph, and Twitter Card metadata.
+- Privacy-friendly Vercel Web Analytics.
 - Content Security Policy and security headers for Vercel.
 
 ## Technologies
@@ -40,7 +44,7 @@ Miaulendário displays the current ISO week in a yearly calendar inspired by gra
 - Web Audio API
 - Vercel
 
-There are no dependencies, frameworks, bundlers, or build steps.
+There are no runtime dependencies, frameworks, or bundlers. A small Node.js script generates both localized HTML pages from one template.
 
 ## Running locally
 
@@ -51,13 +55,27 @@ git clone git@github.com:CarlosX26/miaulendario.git
 cd miaulendario
 ```
 
-Start any static HTTP server. With Python:
+Generate the localized pages:
+
+```bash
+node scripts/build.mjs
+```
+
+Then start any static HTTP server. With Python:
 
 ```bash
 python3 -m http.server 8000
 ```
 
 Then open [http://localhost:8000](http://localhost:8000).
+
+## Testing
+
+Run the calendar unit tests with Node.js:
+
+```bash
+node --test tests/calendar.test.js
+```
 
 ## Deploying to Vercel
 
@@ -69,16 +87,23 @@ When importing the repository into Vercel, use:
 - **Build Command:** leave empty
 - **Output Directory:** `.`
 
-The [`vercel.json`](./vercel.json) file configures clean URLs and security headers.
+The localized HTML files are committed to the repository, so Vercel does not need a build command. The [`vercel.json`](./vercel.json) file configures clean URLs, rewrites, and security headers.
 
 ## Project structure
 
 ```text
 .
 ├── index.html        # Page structure and metadata
+├── en/index.html     # Generated English page, served at /en/
 ├── index.css         # Visual design and responsive layout
-├── index.js          # Calendar calculations and interactions
+├── index.js          # Page rendering and interactions
+├── calendar.js       # Pure calendar and ISO week calculations
+├── locales/          # Portuguese and English page content
+├── templates/        # Shared localized HTML template
+├── scripts/build.mjs # Static localization generator
+├── tests/            # Year-boundary, leap-year, plural, and time-zone tests
 ├── api/env.js        # Serves the public .env easter egg
+├── .vercelignore     # Keeps source-only files out of deployments
 ├── cat.gif           # Floating cat animation
 ├── favicon.svg       # Browser and search favicon
 ├── og-image.png      # Social sharing preview
@@ -89,7 +114,7 @@ The [`vercel.json`](./vercel.json) file configures clean URLs and security heade
 
 ## Privacy and security
 
-All calculations run locally in the browser. The website does not collect or transmit personal data.
+All calendar calculations run locally in the browser. Vercel Web Analytics records anonymized page-view data without cookies.
 
 The versioned `.env` file does not contain credentials or sensitive configuration — it is only a cooking-themed easter egg, available at [miaulendario.online/.env](https://www.miaulendario.online/.env) and [miaulendario.online/env](https://www.miaulendario.online/env). Never place real secrets in this file or in public client-side JavaScript.
 
