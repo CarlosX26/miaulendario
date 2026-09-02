@@ -126,6 +126,23 @@
     return value === 1 && category === "one" ? forms.one : forms.other
   }
 
+  function getMinutesUntilNextFriday(date) {
+    if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
+      throw new TypeError("date must be a valid Date")
+    }
+
+    const friday = 5
+    const daysUntilFriday = (friday - date.getDay() + 7) % 7 || 7
+    const nextFriday = new Date(date)
+    nextFriday.setHours(0, 0, 0, 0)
+    nextFriday.setDate(nextFriday.getDate() + daysUntilFriday)
+
+    return {
+      minutes: Math.ceil((nextFriday.getTime() - date.getTime()) / 60000),
+      target: nextFriday,
+    }
+  }
+
   const calendar = Object.freeze({
     getCalendarMetrics,
     getCivilYearMetrics,
@@ -134,6 +151,7 @@
     getISOWeekRange,
     getISOWeeksInYear,
     getISOYearStart,
+    getMinutesUntilNextFriday,
     msPerDay,
     selectPluralForm,
     utcDate,

@@ -140,6 +140,7 @@ const {
   getDatePartsInTimeZone,
   getISOWeekRange,
   getISOYearStart,
+  getMinutesUntilNextFriday,
   msPerDay,
   selectPluralForm,
   utcDate,
@@ -207,6 +208,38 @@ const localizedToday = today.toLocaleDateString(locale, {
 })
 document.getElementById("todayDateValue").textContent = localizedToday
 document.getElementById("summaryTodayDate").textContent = localizedToday
+
+const numberFormatter = new Intl.NumberFormat(locale)
+let renderedFridayMinutes
+
+function renderFridayCountdown(now = new Date()) {
+  const { minutes } = getMinutesUntilNextFriday(now)
+  if (minutes === renderedFridayMinutes) return
+
+  renderedFridayMinutes = minutes
+  document.getElementById("fridayCountdownPrefix").textContent = pluralForm(
+    minutes,
+    pageData.remainingDaysPrefixOne,
+    pageData.remainingDaysPrefixOther,
+  )
+  document.getElementById("minutesUntilFriday").textContent =
+    numberFormatter.format(minutes)
+  document.getElementById("fridayCountdownUnit").textContent = pluralForm(
+    minutes,
+    pageData.minuteOne,
+    pageData.minuteOther,
+  )
+}
+
+renderFridayCountdown(today)
+function scheduleFridayCountdownUpdate() {
+  const delayUntilNextMinute = 60000 - (Date.now() % 60000) + 25
+  setTimeout(() => {
+    renderFridayCountdown()
+    scheduleFridayCountdownUpdate()
+  }, delayUntilNextMinute)
+}
+scheduleFridayCountdownUpdate()
 
 const currentLanguageLink = document.querySelector(
   `.language-switcher a[hreflang="${locale}"]`,

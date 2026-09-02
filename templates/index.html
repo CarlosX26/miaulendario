@@ -95,6 +95,8 @@
     data-remaining-days-unit-other="{{remainingDaysUnitOther}}"
     data-remaining-weeks-one="{{remainingWeeksOne}}"
     data-remaining-weeks-other="{{remainingWeeksOther}}"
+    data-minute-one="{{minuteOne}}"
+    data-minute-other="{{minuteOther}}"
   >
     <main class="page">
       <nav class="language-switcher" aria-label="{{switchAriaLabel}}">
@@ -136,6 +138,12 @@
         <div class="date-note">
           {{todayPrefix}} <span id="todayDateValue"></span>
         </div>
+        <p class="friday-countdown" id="fridayCountdown" aria-live="off">
+          <span id="fridayCountdownPrefix">--</span>
+          <strong id="minutesUntilFriday">--</strong>
+          <span id="fridayCountdownUnit">--</span>
+          {{fridayCountdownTail}}
+        </p>
       </div>
 
       <div class="perforation" aria-hidden="true">

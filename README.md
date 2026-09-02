@@ -28,6 +28,7 @@ Miaulendário displays the current ISO week in a yearly calendar inspired by gra
 - Current day of the year.
 - Remaining days and weeks.
 - Localized singular and plural labels.
+- Live countdown in minutes to the next Friday.
 - Visual grid for past, current, and upcoming weeks, including date ranges.
 - Pre-rendered Brazilian Portuguese and English pages.
 - Responsive layout with reduced-motion support.

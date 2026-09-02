@@ -7,6 +7,7 @@ const {
   getDatePartsInTimeZone,
   getISOWeekRange,
   getISOWeeksInYear,
+  getMinutesUntilNextFriday,
   selectPluralForm,
 } = require("../calendar.js")
 
@@ -81,6 +82,30 @@ test("Portuguese and English choose singular only for one", () => {
     assert.equal(selectPluralForm(1, locale, forms), "singular")
     assert.equal(selectPluralForm(2, locale, forms), "plural")
   }
+})
+
+test("Friday countdown targets midnight at the upcoming Friday", () => {
+  const thursday = new Date(2026, 8, 3, 23, 30)
+  const saturday = new Date(2026, 8, 5, 12, 0)
+
+  assert.equal(getMinutesUntilNextFriday(thursday).minutes, 30)
+  assert.equal(getMinutesUntilNextFriday(saturday).minutes, 5.5 * 24 * 60)
+})
+
+test("on Friday the countdown targets the following Friday", () => {
+  const fridayMidnight = new Date(2026, 8, 4, 0, 0)
+  const result = getMinutesUntilNextFriday(fridayMidnight)
+
+  assert.equal(result.minutes, 7 * 24 * 60)
+  assert.equal(result.target.getDay(), 5)
+  assert.equal(result.target.getDate(), 11)
+  assert.equal(result.target.getHours(), 0)
+})
+
+test("Friday countdown rounds partial minutes up", () => {
+  const almostFriday = new Date(2026, 8, 3, 23, 59, 30)
+
+  assert.equal(getMinutesUntilNextFriday(almostFriday).minutes, 1)
 })
 
 test("invalid Gregorian dates are rejected", () => {

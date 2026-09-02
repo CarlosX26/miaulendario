@@ -95,6 +95,8 @@
     data-remaining-days-unit-other="days"
     data-remaining-weeks-one="week remaining"
     data-remaining-weeks-other="weeks remaining"
+    data-minute-one="minute"
+    data-minute-other="minutes"
   >
     <main class="page">
       <nav class="language-switcher" aria-label="Select language">
@@ -136,6 +138,12 @@
         <div class="date-note">
           today is <span id="todayDateValue"></span>
         </div>
+        <p class="friday-countdown" id="fridayCountdown" aria-live="off">
+          <span id="fridayCountdownPrefix">--</span>
+          <strong id="minutesUntilFriday">--</strong>
+          <span id="fridayCountdownUnit">--</span>
+          until next Friday
+        </p>
       </div>
 
       <div class="perforation" aria-hidden="true">
