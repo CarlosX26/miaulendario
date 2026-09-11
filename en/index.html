@@ -69,6 +69,7 @@
     <link rel="stylesheet" href="/index.css" />
     <script src="/calendar.js" defer></script>
     <script src="/index.js" defer></script>
+    <script src="/friday.js" defer></script>
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <script type="application/ld+json">
       {
@@ -138,13 +139,34 @@
         <div class="date-note">
           today is <span id="todayDateValue"></span>
         </div>
-        <p class="friday-countdown" id="fridayCountdown" aria-live="off">
+      </div>
+
+      <section class="friday-widget" id="fridayWidget" aria-label="Countdown to Friday"
+        data-phrases="[&quot;Friday is deployment day. What could possibly go wrong?&quot;,&quot;It&#39;s Fridayyy! Even the cat has clocked out.&quot;,&quot;Today’s only allowed bug is a cat on the keyboard.&quot;,&quot;git push and a little faith. Happy Friday!&quot;]"
+        data-joke-version="a46284ab219ae8eb"
+        data-share-tail="until Friday. Hang in there, warrior 🐈"
+        data-share-url="https://www.miaulendario.online/en/"
+        data-copied="Text and link copied!"
+      >
+        <div id="fridayCelebration" hidden>
+          <p class="friday-title" id="fridayTitle">IT’S FRIDAY! 🐈</p>
+          <p class="friday-phrase" id="fridayPhrase"></p>
+        </div>
+        <p class="friday-countdown" id="fridayCountdown">
           <span id="fridayCountdownPrefix">--</span>
           <strong id="minutesUntilFriday">--</strong>
           <span id="fridayCountdownUnit">--</span>
           until next Friday
         </p>
-      </div>
+        <div class="friday-actions">
+          <button class="friday-share" id="fridayShare" type="button" hidden>Share the Friday vibes</button>
+          <p class="friday-feedback" id="fridayShareStatus" role="status"></p>
+        </div>
+        <div class="friday-manual" id="fridayManual" hidden>
+          <label for="fridayShareText">Select and copy the text below to share:</label>
+          <textarea id="fridayShareText" rows="4" readonly></textarea>
+        </div>
+      </section>
 
       <div class="perforation" aria-hidden="true">
         <div class="hole"></div>

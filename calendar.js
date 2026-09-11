@@ -143,7 +143,24 @@
     }
   }
 
+  function getFridayState(date, phraseCount = 4) {
+    const { minutes, target } = getMinutesUntilNextFriday(date)
+    if (!Number.isInteger(phraseCount) || phraseCount < 1) {
+      throw new RangeError("phraseCount must be a positive integer")
+    }
+    const isFriday = date.getDay() === 5
+    const friday = isFriday ? date : target
+    // Count civil weeks from a known Friday, independent of DST and ISO years.
+    const weekIndex = Math.round(
+      (utcDate(friday.getFullYear(), friday.getMonth(), friday.getDate()) -
+        utcDate(1970, 0, 2)) / (7 * msPerDay),
+    )
+    const phraseIndex = ((weekIndex % phraseCount) + phraseCount) % phraseCount
+    return { isFriday, minutes, phraseIndex }
+  }
+
   const calendar = Object.freeze({
+    getFridayState,
     getCalendarMetrics,
     getCivilYearMetrics,
     getDatePartsInTimeZone,

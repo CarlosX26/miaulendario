@@ -69,6 +69,7 @@
     <link rel="stylesheet" href="/index.css" />
     <script src="/calendar.js" defer></script>
     <script src="/index.js" defer></script>
+    <script src="/friday.js" defer></script>
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <script type="application/ld+json">
       {
@@ -138,13 +139,34 @@
         <div class="date-note">
           {{todayPrefix}} <span id="todayDateValue"></span>
         </div>
-        <p class="friday-countdown" id="fridayCountdown" aria-live="off">
+      </div>
+
+      <section class="friday-widget" id="fridayWidget" aria-label="{{fridaySectionLabel}}"
+        data-phrases="{{fridayPhrases}}"
+        data-joke-version="{{jokeVersion}}"
+        data-share-tail="{{fridayShareTail}}"
+        data-share-url="{{canonicalUrl}}"
+        data-copied="{{fridayCopied}}"
+      >
+        <div id="fridayCelebration" hidden>
+          <p class="friday-title" id="fridayTitle">{{fridayTitle}}</p>
+          <p class="friday-phrase" id="fridayPhrase"></p>
+        </div>
+        <p class="friday-countdown" id="fridayCountdown">
           <span id="fridayCountdownPrefix">--</span>
           <strong id="minutesUntilFriday">--</strong>
           <span id="fridayCountdownUnit">--</span>
           {{fridayCountdownTail}}
         </p>
-      </div>
+        <div class="friday-actions">
+          <button class="friday-share" id="fridayShare" type="button" hidden>{{fridayShareButton}}</button>
+          <p class="friday-feedback" id="fridayShareStatus" role="status"></p>
+        </div>
+        <div class="friday-manual" id="fridayManual" hidden>
+          <label for="fridayShareText">{{fridayManualCopy}}</label>
+          <textarea id="fridayShareText" rows="4" readonly></textarea>
+        </div>
+      </section>
 
       <div class="perforation" aria-hidden="true">
         <div class="hole"></div>

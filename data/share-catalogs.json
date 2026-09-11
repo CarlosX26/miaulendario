@@ -1,0 +1,24 @@
+{
+  "a46284ab219ae8eb": [
+    {
+      "id": "friday-deploy",
+      "pt-BR": "Sexta-feira é dia de deploy. O que poderia dar errado?",
+      "en": "Friday is deployment day. What could possibly go wrong?"
+    },
+    {
+      "id": "cat-clocked-out",
+      "pt-BR": "It's Fridayyy! Até o gato encerrou o expediente.",
+      "en": "It's Fridayyy! Even the cat has clocked out."
+    },
+    {
+      "id": "cat-keyboard-bug",
+      "pt-BR": "Hoje o único bug permitido é o gato no teclado.",
+      "en": "Today’s only allowed bug is a cat on the keyboard."
+    },
+    {
+      "id": "git-push-faith",
+      "pt-BR": "git push e fé. Sextou!",
+      "en": "git push and a little faith. Happy Friday!"
+    }
+  ]
+}

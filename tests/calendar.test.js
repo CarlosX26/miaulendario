@@ -4,6 +4,7 @@ const test = require("node:test")
 const assert = require("node:assert/strict")
 const {
   getCalendarMetrics,
+  getFridayState,
   getDatePartsInTimeZone,
   getISOWeekRange,
   getISOWeeksInYear,
@@ -113,4 +114,40 @@ test("invalid Gregorian dates are rejected", () => {
     () => getCalendarMetrics({ year: 2025, month: 2, day: 29 }),
     /invalid Gregorian calendar date/,
   )
+})
+
+test("Friday celebration lasts exactly the local Friday", () => {
+  assert.equal(getFridayState(new Date(2026, 8, 10, 23, 59)).isFriday, false)
+  assert.equal(getFridayState(new Date(2026, 8, 11, 0)).isFriday, true)
+  assert.equal(getFridayState(new Date(2026, 8, 11, 12)).isFriday, true)
+  assert.equal(getFridayState(new Date(2026, 8, 11, 23, 59)).isFriday, true)
+  assert.equal(getFridayState(new Date(2026, 8, 12, 0)).isFriday, false)
+})
+
+test("weekly phrases remain stable and rotate across calendar and ISO years", () => {
+  const morning = getFridayState(new Date(2020, 11, 25, 0))
+  const evening = getFridayState(new Date(2020, 11, 25, 23, 59))
+  assert.equal(morning.phraseIndex, evening.phraseIndex)
+  for (let week = 1; week <= 4; week++) {
+    const next = getFridayState(new Date(2020, 11, 25 + week * 7))
+    assert.equal(next.phraseIndex, (morning.phraseIndex + week) % 4)
+  }
+})
+
+test("Friday countdown and phrase rotation survive daylight saving time", () => {
+  const { execFileSync } = require("node:child_process")
+  const result = execFileSync(process.execPath, ["-e", `
+    const { getFridayState } = require('./calendar.js')
+    console.log(JSON.stringify([
+      getFridayState(new Date(2026, 2, 6)),
+      getFridayState(new Date(2026, 2, 13)),
+    ]))
+  `], {
+    cwd: require("node:path").join(__dirname, ".."),
+    env: { ...process.env, TZ: "America/New_York" },
+    encoding: "utf8",
+  })
+  const [before, after] = JSON.parse(result)
+  assert.equal(before.minutes, 7 * 24 * 60 - 60)
+  assert.equal(after.phraseIndex, (before.phraseIndex + 1) % 4)
 })
