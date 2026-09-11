@@ -69,6 +69,7 @@
     <link rel="stylesheet" href="/index.css" />
     <script src="/calendar.js" defer></script>
     <script src="/index.js" defer></script>
+    <script src="/friday.js" defer></script>
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <script type="application/ld+json">
       {
@@ -138,13 +139,34 @@
         <div class="date-note">
           hoje é <span id="todayDateValue"></span>
         </div>
-        <p class="friday-countdown" id="fridayCountdown" aria-live="off">
+      </div>
+
+      <section class="friday-widget" id="fridayWidget" aria-label="Contagem regressiva para sexta-feira"
+        data-phrases="[&quot;Sexta-feira é dia de deploy. O que poderia dar errado?&quot;,&quot;It&#39;s Fridayyy! Até o gato encerrou o expediente.&quot;,&quot;Hoje o único bug permitido é o gato no teclado.&quot;,&quot;git push e fé. Sextou!&quot;]"
+        data-joke-version="a46284ab219ae8eb"
+        data-share-tail="para sexta-feira. Força, guerreiro 🐈"
+        data-share-url="https://www.miaulendario.online/"
+        data-copied="Texto e link copiados!"
+      >
+        <div id="fridayCelebration" hidden>
+          <p class="friday-title" id="fridayTitle">SEXTOU! 🐈</p>
+          <p class="friday-phrase" id="fridayPhrase"></p>
+        </div>
+        <p class="friday-countdown" id="fridayCountdown">
           <span id="fridayCountdownPrefix">--</span>
           <strong id="minutesUntilFriday">--</strong>
           <span id="fridayCountdownUnit">--</span>
           para a próxima sexta-feira
         </p>
-      </div>
+        <div class="friday-actions">
+          <button class="friday-share" id="fridayShare" type="button" hidden>Compartilhar a zoeira</button>
+          <p class="friday-feedback" id="fridayShareStatus" role="status"></p>
+        </div>
+        <div class="friday-manual" id="fridayManual" hidden>
+          <label for="fridayShareText">Selecione e copie o texto abaixo para compartilhar:</label>
+          <textarea id="fridayShareText" rows="4" readonly></textarea>
+        </div>
+      </section>
 
       <div class="perforation" aria-hidden="true">
         <div class="hole"></div>

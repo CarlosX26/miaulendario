@@ -9,11 +9,18 @@
     }
   ],
   "functions": {
+    "api/og.js": {
+      "includeFiles": "favicon.svg"
+    },
     "api/env.js": {
       "includeFiles": ".env"
     }
   },
   "rewrites": [
+    {
+      "source": "/share",
+      "destination": "/api/share"
+    },
     {
       "source": "/.env",
       "destination": "/api/env"

@@ -258,6 +258,23 @@ html[lang="en"] .language-switcher a[hreflang="en"] {
   margin-bottom: 8px;
 }
 
+.friday-widget {
+  margin-top: 5px;
+  text-align: center;
+}
+.friday-title {
+  color: var(--pen-red);
+  font-family: "Caveat", cursive;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 700;
+}
+.friday-phrase {
+  max-width: 460px;
+  margin: 4px auto 8px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
 .friday-countdown {
   display: inline-block;
   max-width: 100%;
@@ -276,8 +293,88 @@ html[lang="en"] .language-switcher a[hreflang="en"] {
 .friday-countdown strong {
   color: var(--pen-red);
 }
+.is-friday .friday-countdown {
+  font-size: 0.65rem;
+  background: transparent;
+}
+.is-friday .friday-countdown strong {
+  color: var(--ink-soft);
+}
+.friday-actions {
+  margin-top: 8px;
+}
+.friday-share {
+  max-width: 100%;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--grid-line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.friday-share:hover {
+  border-color: var(--pen-red);
+}
+.friday-share:focus-visible,
+.friday-manual textarea:focus-visible {
+  outline: 2px solid var(--pen-red);
+  outline-offset: 3px;
+}
+.friday-share:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.friday-feedback,
+.friday-manual {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.friday-feedback:not(:empty),
+.friday-manual {
+  margin-top: 8px;
+}
+.friday-manual textarea {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  margin: 8px auto 0;
+  padding: 10px;
+  border: 1px solid var(--grid-line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+  resize: vertical;
+}
 
 /* Perforation, like tearing a sheet from a calendar pad */
+.share-page {
+  text-align: center;
+}
+.share-card {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 24px 0 16px;
+  border: 1px solid var(--grid-line);
+  border-radius: 12px;
+}
+.share-caption {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.share-open {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
 .perforation {
   position: relative;
   height: 26px;
